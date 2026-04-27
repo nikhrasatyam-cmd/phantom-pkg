@@ -1,13 +1,34 @@
 # phantom-pkg
 
+[![npm version](https://img.shields.io/npm/v/phantom-pkg.svg)](https://www.npmjs.com/package/phantom-pkg)
+[![npm downloads](https://img.shields.io/npm/dw/phantom-pkg.svg)](https://www.npmjs.com/package/phantom-pkg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Validate LLM-recommended npm packages before you install them.
+
+## Why This Exists
+
+In October 2025, the **PhantomRaven** campaign planted 126 malicious npm
+packages that accumulated 86,000+ installs by exploiting LLM hallucinations —
+registering the exact fake package names that AI assistants suggest to
+developers. This attack vector is called **slopsquatting**.
+
+Sonatype's 2026 research found that **20%+ of LLM-recommended package names
+are hallucinated** — names that don't exist on the registry, or worse, names
+that attackers have proactively registered.
+
+`phantom-pkg` validates packages *before* `npm install` runs.
 
 ## The Problem
 
-LLMs hallucinate npm package names. Sonatype's 2026 research found that 28% of
-LLM-assisted dependency recommendations reference non-existent or incorrect packages.
+LLMs hallucinate npm package names. Sonatype's 2026 research found that **28% of
+LLM-assisted dependency recommendations reference non-existent or incorrect packages.**
 Real packages can also be **typosquats** — malicious clones of popular packages
 registered under subtly misspelled names.
+
+> When an AI assistant suggests `"unused-imports"` as a simpler alternative to
+> `"eslint-plugin-unused-imports"`, and an attacker has already registered that
+> name with credential-stealing malware — you've been slopsquatted.
 
 `phantom-pkg` catches both problems *before* `npm install` runs.
 
